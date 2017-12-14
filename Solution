@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _02_Scholarship
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //input
+            int scholarship = 0;
+            double scholarshipSum = 0;
+            double earnings = double.Parse(Console.ReadLine());
+            double averageRank = double.Parse(Console.ReadLine());
+            double minWage = double.Parse(Console.ReadLine());
+
+            //calculation
+            if ((earnings > minWage && averageRank < 5.5 ) || (averageRank < 4.5))
+            {
+                scholarship = 1;
+            }
+
+            if (earnings < minWage && averageRank > 4.5)
+            {
+                scholarship = 2;
+            }
+
+            if (averageRank >= 5.5)
+            {
+                scholarship = 3;
+            }
+
+            if (earnings < minWage && averageRank >= 5.5)
+            {
+                if (0.35 * minWage > averageRank * 25)
+                {
+                    scholarship = 2;
+                }
+                else
+                {
+                    scholarship = 3;
+                }
+            }
+
+            
+            //output
+            switch (scholarship)
+            {
+                case 1:
+                    Console.WriteLine("You cannot get a scholarship!");
+                    break;
+                case 2:
+                    scholarshipSum = Math.Floor(0.35 * minWage);
+                    Console.WriteLine("You get a Social scholarship {0} BGN", scholarshipSum);
+                    break;
+                case 3:
+                    scholarshipSum = Math.Floor(25 * averageRank);
+                    Console.WriteLine("You get a scholarship for excellent results {0} BGN", scholarshipSum);
+                    break;
+            }
+
+        }
+    }
+}
